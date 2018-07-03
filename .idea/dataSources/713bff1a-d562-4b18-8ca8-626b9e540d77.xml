@@ -945,134 +945,139 @@
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="239" parent="233" name="PRIMARY">
+    <column id="239" parent="233" name="svn_add">
+      <Position>3</Position>
+      <DataType>varchar(200)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="240" parent="233" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id
 modu_name</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="240" parent="234" name="id">
+    <column id="241" parent="234" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="241" parent="234" name="pre_plat_id">
+    <column id="242" parent="234" name="pre_plat_id">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="242" parent="234" name="pre_modu_id">
+    <column id="243" parent="234" name="pre_modu_id">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="243" parent="234" name="v1">
+    <column id="244" parent="234" name="v1">
       <Position>4</Position>
       <DataType>smallint(6)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="244" parent="234" name="v2">
+    <column id="245" parent="234" name="v2">
       <Position>5</Position>
       <DataType>smallint(6)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="245" parent="234" name="v3">
+    <column id="246" parent="234" name="v3">
       <Position>6</Position>
       <DataType>smallint(6)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="246" parent="234" name="v4">
+    <column id="247" parent="234" name="v4">
       <Position>7</Position>
       <DataType>smallint(6)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="247" parent="234" name="pre_tag_path">
+    <column id="248" parent="234" name="pre_tag_path">
       <Position>8</Position>
       <DataType>varchar(200)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="248" parent="234" name="index_plat_id">
+    <index id="249" parent="234" name="index_plat_id">
       <ColNames>pre_plat_id</ColNames>
     </index>
-    <index id="249" parent="234" name="index_modu_id">
+    <index id="250" parent="234" name="index_modu_id">
       <ColNames>pre_modu_id</ColNames>
     </index>
-    <key id="250" parent="234" name="PRIMARY">
+    <key id="251" parent="234" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="251" parent="235" name="id">
+    <column id="252" parent="235" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="252" parent="235" name="plat_name">
+    <column id="253" parent="235" name="plat_name">
       <Position>2</Position>
       <Comment>平台名</Comment>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="253" parent="235" name="PRIMARY">
+    <key id="254" parent="235" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id
 plat_name</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="254" parent="236" name="id">
+    <column id="255" parent="236" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="255" parent="236" name="bef_plat_id">
+    <column id="256" parent="236" name="bef_plat_id">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="256" parent="236" name="bef_modu_id">
+    <column id="257" parent="236" name="bef_modu_id">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="257" parent="236" name="bef_version">
+    <column id="258" parent="236" name="bef_version">
       <Position>4</Position>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="258" parent="236" name="update_date">
+    <column id="259" parent="236" name="update_date">
       <Position>5</Position>
       <DataType>datetime|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="259" parent="236" name="cause">
+    <column id="260" parent="236" name="cause">
       <Position>6</Position>
       <DataType>varchar(400)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="260" parent="236" name="bef_tag_path">
+    <column id="261" parent="236" name="bef_tag_path">
       <Position>7</Position>
       <DataType>varchar(200)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="261" parent="236" name="index_plat_id">
+    <index id="262" parent="236" name="index_plat_id">
       <ColNames>bef_plat_id</ColNames>
     </index>
-    <index id="262" parent="236" name="index_modu_id">
+    <index id="263" parent="236" name="index_modu_id">
       <ColNames>bef_modu_id</ColNames>
     </index>
-    <key id="263" parent="236" name="PRIMARY">
+    <key id="264" parent="236" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
