@@ -6,22 +6,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>模块配置</title>
     <!-- <script src="js/useragent.js" type="text/javascript"></script> -->
-    <script src="js/jquery.min.js" type="text/javascript"></script>
+    <!--<script src="js/jquery.min.js" type="text/javascript"></script>-->
     <!--[if lt IE 9]>
       <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <![endif]-->
     <style type="text/css">
-      .col {
-
+      .col input {
+          width: 500px;
+          height: 40px;
+          line-height: 40px;
       }
     </style>
   </head>
   <body>
-    <form action="" method="post">
-        <div class="col">模块名称: <input type="text" placeholder="请输入模块名称" name="modle_name" /></div>
-        <div class="col">SVN地址: <input type="text" placeholder="请输入对应模块地址" name="svn_add"/></div>
+    <form action="\model\" method="post">
+        <p>
+            <div class="col">模块名称:
+        <p><input type="text" placeholder="请输入模块名称" name="modle_name" /></p> </div>
+        </p>
+        <p>
+            <div class="col">SVN地址:
+        <p><input type="text" placeholder="请输入对应模块地址" name="svn_add"/></p></div>
+        </p>
         <input type="submit" value="提交" />
         <input type="reset" value="重置" />
+      <p>
+         <span style="color:red;">{{ error_message }}</span>
+      </p>
     </form>
 
   </body>

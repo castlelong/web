@@ -15,14 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path, re_path
-from SVN_Control import views
+from svn import views
 
 
-app_name = 'SVN_Control'
+app_name = 'svn'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     # re_path(r'^platform/', views.Platform.as_view()),
     path('index/', views.index),
     path('platform/', views.Platform.as_view()),
+    path('model/', views.Model.as_view()),
+    path('tag/', views.Tag.as_view()),
 ]

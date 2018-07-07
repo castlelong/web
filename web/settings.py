@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.db.backends.mysql',
-    'SVN_Control.apps.SvnControlConfig',
+    # 'SVN_Control.apps.SvnControlConfig',
+    'svn',
 ]
 
 MIDDLEWARE = [
@@ -79,7 +80,7 @@ WSGI_APPLICATION = 'web.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'svn_django',
+        'NAME': 'svn',
         'USER': 'root',
         'PASSWORD': '123456',
         'HOST': '127.0.0.1',

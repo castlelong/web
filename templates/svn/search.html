@@ -16,6 +16,92 @@
       button{
         margin: 10px 10px 0 10px;
       }
+      .tb-table table {
+        margin-top: 20px;
+        width: 100%;
+        border-width: 1px 0 0 1px;
+      }
+      .tb-table table, .tb-table th, .tb-table td {
+        border-color: #dadada;
+        border-style: solid;
+      }
+      table {
+        border-spacing: 0;
+      }
+      .tb-table thead th {
+        text-align: center;
+        color: #496c82;
+      }
+      .tb-table th {
+        background-color: #edecf1;
+        text-align: right;
+      }
+      .tb-table th, .tb-table td, .tb-table-noborder td {
+        border-width: 0 1px 1px 0;
+        padding: 4px;
+        line-height: 22px;
+      }
+      .tb-table table, .tb-table th, .tb-table td {
+        border-color: #dadada;
+        border-style: solid;
+      }
+      th {
+        font-weight: normal;
+      }
+      .tb-page {
+        margin-top: 4px;
+        padding: 4px;
+        border: solid 1px #d6deeb;
+        background-color: #ededef;
+      }
+      .fn-clear {
+        zoom: 1;
+      }
+      .tb-page .fn-left {
+        line-height: 21px;
+      }
+      .fn-left {
+        float: left;
+      }
+      .fn-clear {
+        zoom: 1;
+      }
+      .fn-right {
+        float: right;
+      }
+      .tb-page span {
+        float: left;
+        margin-left: 4px;
+      }
+      .tb-page span.nolink {
+        height: 17px;
+        padding: 3px 6px 0px 6px;
+        border: solid 1px #dfdfdf;
+        background-color: #ffffff;
+        color: #dfdfdf;
+        line-height: 17px;
+      }
+      .fn-clear:after {
+        clear: both;
+        content: '.';
+        display: block;
+        height: 0;
+        visibility: hidden;
+      }
+      .tb-page span a {
+        float: left;
+        height: 17px;
+        padding: 3px 6px 0px 6px;
+        border: solid 1px #d5dfe9;
+        background-color: #ffffff;
+        color: #0050a2;
+        line-height: 17px;
+      }
+      a {
+        color: #555;
+        text-decoration: none;
+        cursor: pointer;
+      }
     </style>
   </head>
   <body>
@@ -37,7 +123,53 @@
         </div>
         <input type="submit" value="查询" />
     </form>
+    <div class="tb-table">
+      <table id="tab">
+      <thead>
+          <tr>
+              <th width="40">序 号</th>
+              <th>平台名称</th>
+              <th>模块名称</th>
+              <th>tag路径</th>
+              <th>版本号</th>
+              <th>更新说明</th>
+              <th>更新时间</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr style="">
+              <td align="center">1</td>
+              <td align="center">GZTH001</td>
+              <td align="center">广州腾狐</td>
+              <td align="center">109011</td>
+              <td align="center">广州腾狐线上接入</td>
 
-    
+              <td align="center"></td>
+              <td align="center">广州腾狐线上接入</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+	<div class="tb-page fn-clear">
+      <div class="fn-left">显示第 1 - 10 条记录，共221条记录</div>
+        <div class="fn-right fn-clear">
+			<span class="fn-left">当前页1/23</span>
+            <span><a onclick="">首页</a></span>
+            <span class="nolink">上一页</span>
+            <span><a>1</a></span>
+            <span><a onclick="">2</a></span>
+            <span><a onclick="">3</a></span>
+			<span><a onclick="">4</a></span>
+			<span><a onclick="">5</a></span>
+			<span><a onclick="">下一页</a></span>
+			<span>
+				<a onclick="">末页</a>
+			</span>
+			<span><input type="text" class="i-text" value="" name="pageNum" id="pageID"></span>
+			<span><input type="button" value="跳转" class="i-button" ></span>
+		</div>
+	</div>
+    </div>
   </body>
 </html>

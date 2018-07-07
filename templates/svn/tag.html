@@ -16,31 +16,49 @@
       button{
         margin: 10px 10px 0 10px;
       }
+      #mkmc-select {
+        height: 300px;
+        width: 200px;
+      }
+      #mkmc {
+
+      }
     </style>
   </head>
   <body>
-    <div class="col" id="ptmc">
-      平台名称: 
-      <select name="ptmc" id="ptmc-select">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-      </select>
-    </div>
-    <div class="col" id="mkmc">模块名称: 
-      <select name="mkmc" id="mkmc-select" multiple="multiple">
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-      </select>
-    </div>
-    <p>tag信息</p>
-    <textarea rows="10" cols="100" placeholder="请输入" id="tag-message"></textarea>
+
+  <form action="\tag\" method="post">
+      <!--<div class="col" id="ptmc">-->
+      <div class="col" id="ptmc">
+        平台名称:
+        <select name="ptmc" id="ptmc-select">
+          {% for pt_name in pt_list %}
+          <!--<option value={{pt_name}}>{{pt_name}}</option>-->
+            <option value="{{pt_name.id}}">{{pt_name.plat_name}}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col" id="mkmc">模块名称:
+        <select name="mkmc" id="mkmc-select">
+            {% for model_name in model_list %}
+              <!--<option value={{model_name}}>{{model_name}}</option>-->
+                <option value="{{model_name.id}}">{{model_name.modu_name}}</option>
+            {% endfor %}
+        </select>
+      </div>
+      <p>tag信息</p>
+      <textarea rows="10" cols="100" placeholder="请输入" id="tag-message" name="message"></textarea>
     <div>
-      <button id="">确定</button>
-      <button id="">取消</button>
-      <button id="">否决</button>
-      <button id="">可以</button>
-    </div>
+        <input type="submit" name='v1' value="大版本"/>
+        <input type="submit" name="v2" value="v2版本升级"/>
+        <input type="submit" name="v3" value="v3版本升级"/>
+        <input type="submit" name="v4" value="v4版本升级"/>
+        <input type="submit" name="fanhui" value="返回主菜单">
+      </div>
+    </form>
+  <!--<script>-->
+    <!--document.getElementById('ptmc_input').value = document.getElementById('ptmc_select').value;-->
+    <!--document.getElementById('mkmc_input').value = document.getElementById('mkmc_select').value;-->
+  <!--</script>-->
   </body>
 </html>
