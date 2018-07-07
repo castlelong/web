@@ -5,27 +5,6 @@ import datetime
 import time
 from svn import update
 # Create your views here.
-
-
-
-# def index(request):
-#     return HttpResponse("Hello, world. You're at the SVN index.")
-
-
-# def platform(request):
-# #     if request.method == 'POST':
-# #         jc = request.POST.get('plat_jc')
-# #         name = request.POST.get('plat_name')
-# #         if jc == '' or name == '':
-# #             print(123)
-# #             error_message = "未输入相关参数，请认真填写！"
-# #             # return redirect("platform", {"error_message": error_message})
-# #             return render(request, "svn/platform.html", {"error_message": error_message})
-# #
-# #     # else:
-# #     #     return redirect("/platform")
-# #     return render(request, "svn/platform.html")
-
 from django.views import View
 from svn import models
 # plat_dict ={
@@ -74,20 +53,23 @@ class Model(View):
         return reslut
 
     def get(self, request):
-        # return render(request, 'svn/platform.html', {'plat_dict': plat_dict})
-        return render(request, 'svn/model.html')
+        result = models.TbModu.objects.all()
+        return render(request, 'svn/model.html', {'mod_result': result})
 
     def post(self, request):
         name = request.POST.get('modle_name')
         add = request.POST.get('svn_add')
         if name == '' or add == '':
+            result = models.TbModu.objects.all()
             error_message = "未输入相关参数，请认真填写！"
-            return render(request, 'svn/model.html', {"error_message": error_message})
+            return render(request, 'svn/model.html', {"error_message": error_message, 'mod_result': result})
         else:
             name = request.POST.get('modle_name')
             add = request.POST.get('svn_add')
             models.TbModu.objects.create(modu_name=name, modu_add=add)
-            return render(request, 'svn/model.html')
+            return redirect('/model/')
+
+
 
 
 class Tag(View):
@@ -146,7 +128,22 @@ class Search(View):
         return render(request, 'svn/search.html', {'plat_list': plat_result, 'model_list': model_result})
 
     def post(self, request):
-        return redirect('/search/')
+        if request.POST.get('search'):
+            plat_result = models.TbPlat.objects.all()
+            model_result = models.TbModu.objects.all()
+            pt_id = request.POST.get('ptmc')
+            mk_id = request.POST.get('mkmc')
+            if pt_id or mk_id:
+                if pt_id and mk_id:
+                    result = models.TbRecord.objects.filter(bef_plat_id_id=pt_id).filter(bef_module_id_id=mk_id)
+                elif pt_id:
+                    result = models.TbRecord.objects.filter(bef_plat_id_id=pt_id)
+                elif mk_id:
+                    result = models.TbRecord.objects.filter(bef_module_id_id=mk_id)
+            else:
+                result = models.TbRecord.objects.all()
+            return render(request, 'svn/search.html', {'plat_list': plat_result, 'model_list': model_result, \
+                                                       'model_recoder': result})
 
 
 def index(request):

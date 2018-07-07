@@ -104,7 +104,7 @@
       }
     </style>
   </head>
-  <body>
+  <body onload="test()">
     <form action="" method="post">
         <div class="col" id="ptmc">
       平台名称:
@@ -120,8 +120,17 @@
                 <option value="{{model.id}}">{{model.modu_name}}</option>
               {% endfor %}
           </select>
+          <script>
+              function test()
+              {
+                var x =document.getElementById("ptmc-select")
+                var y =document.getElementById("mkmc-select")
+                x.selectedIndex = -1;
+                y.selectedIndex = -1;
+              }
+          </script>
         </div>
-        <input type="submit" value="查询" />
+        <input type="submit" name='search' value="查询" />
     </form>
     <div class="tb-table">
       <table id="tab">
@@ -136,18 +145,19 @@
               <th>更新时间</th>
           </tr>
       </thead>
-      <tbody>
-          <tr style="">
-              <td align="center">1</td>
-              <td align="center">GZTH001</td>
-              <td align="center">广州腾狐</td>
-              <td align="center">109011</td>
-              <td align="center">广州腾狐线上接入</td>
-
-              <td align="center"></td>
-              <td align="center">广州腾狐线上接入</td>
-          </tr>
-        </tbody>
+      {% for row in model_recoder %}
+          <tbody>
+              <tr style="">
+              <td align="center">{{row.id}}</td>
+              <td align="center">{{row.bef_plat_id.plat_name}}</td>
+              <td align="center">{{row.bef_module_id.modu_name}}</td>
+              <td align="center">{{row.bef_tag_path}}</td>
+              <td align="center">{{row.bef_version}}</td>
+              <td align="center">{{row.cause}}</td>
+              <td align="center">{{row.update_date}}</td>
+              </tr>
+            </tbody>
+      {% endfor %}
       </table>
     </div>
     <div>

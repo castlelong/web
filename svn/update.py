@@ -7,7 +7,7 @@ import time
 
 
 def vesrion_update(pt_id, model_id, model_path, v1, v2, v3, v4, version_d, tag_message):
-    version_reslut = models.TbModuleVersion.objects.filter(pre_plat_id_id=pt_id).first()
+    version_reslut = models.TbModuleVersion.objects.filter(pre_plat_id_id=pt_id).filter(pre_module_id=model_id).first()
     update_time = time.strftime('%YY%m%d ')
     print(version_reslut)
     # 判断该模块有未初始化版本信
@@ -21,9 +21,6 @@ def vesrion_update(pt_id, model_id, model_path, v1, v2, v3, v4, version_d, tag_m
         version_id = eval(b)
         version_id = version_id + 1
         version = ''
-        # v_list = ['v1', 'v2', 'v3', 'v4']
-        # if c in v_list:
-        #    v_list[v_list.index(c)] = str(version_id)
         if c == 'v1':
             version = str(version_id) + '.' + str(a.v2) + '.' + str(a.v3) + '.' + str(a.v4)
             model_path = model_path + '/' + version
@@ -49,30 +46,9 @@ def vesrion_update(pt_id, model_id, model_path, v1, v2, v3, v4, version_d, tag_m
         print('返回结果:', result)
     # 初始化版本信息
     else:
-        version = v1 + '.' + v2 + '.' + v3 + '.' + v4
+        version = str(v1) + '.' + str(v2) + '.' + str(v3) + '.' + str(v4)
         model_path = model_path + '/' + version
         models.TbModuleVersion.objects.create(pre_plat_id_id=pt_id, pre_module_id_id=model_id, \
                                               pre_tag_path=model_path, v1=v1, v2=v2, v3=v3, v4=v4)
         models.TbRecord.objects.create(bef_plat_id_id=pt_id, bef_module_id_id=model_id, bef_tag_path=model_path, \
                                        bef_version=version, cause=tag_message)
-                    # if result == 1:
-        #     return 0
-        # else:
-        #     return 1
-    # elif version_d == 2:
-    #     a = models.TbModuleVersion.objects.filter(pre_module_id_id=model_id).filter(pre_plat_id_id=pt_id).first()
-    #     version_id = a.v2
-    #     models.TbModuleVersion.objects.filter(pre_module_id_id=model_id).filter(pre_plat_id_id=pt_id)\
-    #         .update(v2=version_id + 1)
-    #
-    # elif version_d == 3:
-    #     a = models.TbModuleVersion.objects.filter(pre_module_id_id=model_id).filter(pre_plat_id_id=pt_id).first()
-    #     version_id = a.v3
-    #     models.TbModuleVersion.objects.filter(pre_module_id_id=model_id).filter(pre_plat_id_id=pt_id)\
-    #         .update(v3=version_id + 1)
-    #
-    # elif version_d == 4:
-    #     a = models.TbModuleVersion.objects.filter(pre_module_id_id=model_id).filter(pre_plat_id_id=pt_id).first()
-    #     version_id = a.v4
-    #     models.TbModuleVersion.objects.filter(pre_module_id_id=model_id).filter(pre_plat_id_id=pt_id)\
-    #         .update(v4=version_id + 1)

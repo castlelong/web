@@ -16,6 +16,98 @@
           height: 40px;
           line-height: 40px;
       }
+            .col {
+        margin: 10px;
+      }
+      button{
+        margin: 10px 10px 0 10px;
+      }
+      .tb-table table {
+        margin-top: 20px;
+        width: 100%;
+        border-width: 1px 0 0 1px;
+      }
+      .tb-table table, .tb-table th, .tb-table td {
+        border-color: #dadada;
+        border-style: solid;
+      }
+      table {
+        border-spacing: 0;
+      }
+      .tb-table thead th {
+        text-align: center;
+        color: #496c82;
+      }
+      .tb-table th {
+        background-color: #edecf1;
+        text-align: right;
+      }
+      .tb-table th, .tb-table td, .tb-table-noborder td {
+        border-width: 0 1px 1px 0;
+        padding: 4px;
+        line-height: 22px;
+      }
+      .tb-table table, .tb-table th, .tb-table td {
+        border-color: #dadada;
+        border-style: solid;
+      }
+      th {
+        font-weight: normal;
+      }
+      .tb-page {
+        margin-top: 4px;
+        padding: 4px;
+        border: solid 1px #d6deeb;
+        background-color: #ededef;
+      }
+      .fn-clear {
+        zoom: 1;
+      }
+      .tb-page .fn-left {
+        line-height: 21px;
+      }
+      .fn-left {
+        float: left;
+      }
+      .fn-clear {
+        zoom: 1;
+      }
+      .fn-right {
+        float: right;
+      }
+      .tb-page span {
+        float: left;
+        margin-left: 4px;
+      }
+      .tb-page span.nolink {
+        height: 17px;
+        padding: 3px 6px 0px 6px;
+        border: solid 1px #dfdfdf;
+        background-color: #ffffff;
+        color: #dfdfdf;
+        line-height: 17px;
+      }
+      .fn-clear:after {
+        clear: both;
+        content: '.';
+        display: block;
+        height: 0;
+        visibility: hidden;
+      }
+      .tb-page span a {
+        float: left;
+        height: 17px;
+        padding: 3px 6px 0px 6px;
+        border: solid 1px #d5dfe9;
+        background-color: #ffffff;
+        color: #0050a2;
+        line-height: 17px;
+      }
+      a {
+        color: #555;
+        text-decoration: none;
+        cursor: pointer;
+      }
     </style>
   </head>
   <body>
@@ -28,12 +120,31 @@
             <div class="col">SVN地址:
         <p><input type="text" placeholder="请输入对应模块地址" name="svn_add"/></p></div>
         </p>
-        <input type="submit" value="提交" />
-        <input type="reset" value="重置" />
+        <input type="submit" name="tijiao" value="提交" />
+        <input type="reset" name="chongzhi" value="重置" />
       <p>
          <span style="color:red;">{{ error_message }}</span>
       </p>
     </form>
-
+    <div class="tb-table">
+      <table id="tab">
+      <thead>
+          <tr>
+              <th width="40">序 号</th>
+              <th>模块名称</th>
+              <th>模块SVN地址</th>
+          </tr>
+      </thead>
+      {% for row in mod_result %}
+          <tbody>
+              <tr style="">
+              <td align="center">{{row.id}}</td>
+              <td align="center">{{row.modu_name}}</td>
+              <td align="center">{{row.modu_add}}</td>
+              </tr>
+            </tbody>
+      {% endfor %}
+      </table>
+    </div>
   </body>
 </html>
