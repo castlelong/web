@@ -48,7 +48,7 @@ class TbRecord(models.Model):
     bef_plat_id = models.ForeignKey(TbPlat, on_delete=models.CASCADE, db_column="bef_plat_id")
     bef_module_id = models.ForeignKey(TbModu, on_delete=models.CASCADE, db_column="bef_module_id")
     bef_version = models.CharField("历史版本", max_length=10)
-    update_date = models.DateTimeField("更新时间")
+    update_date = models.DateTimeField("更新时间", auto_now=True)
     cause = models.CharField("更新原因", max_length=400)
     bef_tag_path = models.CharField("对应tag路径", max_length=200)
 

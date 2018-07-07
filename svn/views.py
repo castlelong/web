@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 from django.http import HttpResponse
 import datetime
+import time
 from svn import update
 # Create your views here.
 
@@ -105,29 +106,47 @@ class Tag(View):
         pt_id = request.POST.get('ptmc')
         model_id = request.POST.get('mkmc')
         tag_message = request.POST.get('message')
-        model_path = ''
+        tag_date = time.strftime('%Y%m%d', time.localtime())
         v1 = 1
         v2 = 0
         v3 = 0
         v4 = 0
-        model_result = models.TbModu.objects.filter(id=model_id)
-        for model_row in model_result:
-            model_path = model_row.modu_add
+        model_result = models.TbModu.objects.filter(id=model_id).first()
+        svn_add = "http://10.200.200.21:18443"
+        model_name = model_result.modu_name
+        model_version = '8043'
+        model_path = svn_add + '/' + model_name + '/' + model_version + '/' + tag_date
+        print(model_path)
+        pass
         if request.POST.get('v1'):
             version_d = 1
-            update.vesrion_update(pt_id, model_id, model_path, v1, v2, v3, v4, version_d)
+            update.vesrion_update(pt_id, model_id, model_path, v1, v2, v3, v4, version_d, tag_message)
         elif request.POST.get('v2'):
             version_d = 2
-            update.vesrion_update(pt_id, model_id, model_path, v1, v2, v3, v4, version_d)
+            update.vesrion_update(pt_id, model_id, model_path, v1, v2, v3, v4, version_d, tag_message)
         elif request.POST.get('v3'):
             version_d = 3
-            update.vesrion_update(pt_id, model_id, model_path, v1, v2, v3, v4, version_d)
+            update.vesrion_update(pt_id, model_id, model_path, v1, v2, v3, v4, version_d, tag_message)
         elif request.POST.get('v4'):
             version_d = 4
-            update.vesrion_update(pt_id, model_id, model_path, v1, v2, v3, v4, version_d)
+            update.vesrion_update(pt_id, model_id, model_path, v1, v2, v3, v4, version_d, tag_message)
         elif request.POST.get('fanhui'):
             return redirect('/index/')
         return redirect('/tag/')
+
+
+class Search(View):
+    def dispatch(self, request, *args, **kwargs):
+        reslut = super(Search, self).dispatch(request, *args, **kwargs)
+        return reslut
+
+    def get(self, request):
+        plat_result = models.TbPlat.objects.all()
+        model_result = models.TbModu.objects.all()
+        return render(request, 'svn/search.html', {'plat_list': plat_result, 'model_list': model_result})
+
+    def post(self, request):
+        return redirect('/search/')
 
 
 def index(request):

@@ -33,7 +33,6 @@
         平台名称:
         <select name="ptmc" id="ptmc-select">
           {% for pt_name in pt_list %}
-          <!--<option value={{pt_name}}>{{pt_name}}</option>-->
             <option value="{{pt_name.id}}">{{pt_name.plat_name}}</option>
           {% endfor %}
         </select>
@@ -41,7 +40,6 @@
       <div class="col" id="mkmc">模块名称:
         <select name="mkmc" id="mkmc-select">
             {% for model_name in model_list %}
-              <!--<option value={{model_name}}>{{model_name}}</option>-->
                 <option value="{{model_name.id}}">{{model_name.modu_name}}</option>
             {% endfor %}
         </select>

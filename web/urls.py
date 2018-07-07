@@ -27,4 +27,5 @@ urlpatterns = [
     path('platform/', views.Platform.as_view()),
     path('model/', views.Model.as_view()),
     path('tag/', views.Tag.as_view()),
+    path('search/', views.Search.as_view())
 ]

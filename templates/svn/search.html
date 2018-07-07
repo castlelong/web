@@ -109,16 +109,16 @@
         <div class="col" id="ptmc">
       平台名称:
           <select name="ptmc" id="ptmc-select">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
+            {% for pt in plat_list %}
+                <option value="{{pt.id}}">{{pt.plat_name}}</option>
+            {% endfor %}
           </select>
         </div>
         <div class="col" id="mkmc">模块名称:
           <select name="mkmc" id="mkmc-select">
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
+              {% for model in model_list%}
+                <option value="{{model.id}}">{{model.modu_name}}</option>
+              {% endfor %}
           </select>
         </div>
         <input type="submit" value="查询" />
