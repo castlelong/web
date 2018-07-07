@@ -97,7 +97,7 @@ class Tag(View):
         svn_add = "http://10.200.200.21:18443"
         model_name = model_result.modu_name
         model_version = '8043'
-        model_path = svn_add + '/' + model_name + '/' + model_version + '/' + tag_date
+        model_path = svn_add + '/' + model_name + '/' + model_version + '_' + tag_date
         print(model_path)
         pass
         if request.POST.get('v1'):
@@ -142,6 +142,8 @@ class Search(View):
                     result = models.TbRecord.objects.filter(bef_module_id_id=mk_id)
             else:
                 result = models.TbRecord.objects.all()
+                for row in result:
+                    print(type(row.update_date),row.update_date)
             return render(request, 'svn/search.html', {'plat_list': plat_result, 'model_list': model_result, \
                                                        'model_recoder': result})
 

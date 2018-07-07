@@ -23,16 +23,16 @@ def vesrion_update(pt_id, model_id, model_path, v1, v2, v3, v4, version_d, tag_m
         version = ''
         if c == 'v1':
             version = str(version_id) + '.' + str(a.v2) + '.' + str(a.v3) + '.' + str(a.v4)
-            model_path = model_path + '/' + version
+            model_path = model_path + '_' + version
         elif c == 'v2':
             version = str(a.v1) + '.' + str(version_id) + '.' + str(a.v3) + '.' + str(a.v4)
-            model_path = model_path + '/' + version
+            model_path = model_path + '_' + version
         elif c == 'v3':
             version = str(a.v1) + '.' + str(a.v2) + '.' + str(version_id) + '.' + str(a.v4)
-            model_path = model_path + '/' + version
+            model_path = model_path + '_' + version
         elif c == 'v4':
             version = str(a.v1) + '.' + str(a.v2) + '.' + str(a.v3) + '.' + str(version_id)
-            model_path = model_path + '/' + version
+            model_path = model_path + '_' + version
         print('地址：', model_path)
         print('version', version)
         print('version_id:', version_id)
@@ -47,7 +47,7 @@ def vesrion_update(pt_id, model_id, model_path, v1, v2, v3, v4, version_d, tag_m
     # 初始化版本信息
     else:
         version = str(v1) + '.' + str(v2) + '.' + str(v3) + '.' + str(v4)
-        model_path = model_path + '/' + version
+        model_path = model_path + '_' + version
         models.TbModuleVersion.objects.create(pre_plat_id_id=pt_id, pre_module_id_id=model_id, \
                                               pre_tag_path=model_path, v1=v1, v2=v2, v3=v3, v4=v4)
         models.TbRecord.objects.create(bef_plat_id_id=pt_id, bef_module_id_id=model_id, bef_tag_path=model_path, \

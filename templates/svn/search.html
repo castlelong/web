@@ -154,7 +154,7 @@
               <td align="center">{{row.bef_tag_path}}</td>
               <td align="center">{{row.bef_version}}</td>
               <td align="center">{{row.cause}}</td>
-              <td align="center">{{row.update_date}}</td>
+              <td align="center" >{{row.update_date | date:"Y-m-d H:m:s"}}</td>
               </tr>
             </tbody>
       {% endfor %}
