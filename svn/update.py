@@ -24,17 +24,14 @@ def vesrion_update(pt_id, model_id, model_path, v1, v2, v3, v4, version_d, tag_m
         # 根据升级的版本确定版本号路径
         if c == 'v1':
             version = str(version_id) + '.' + str(a.v2) + '.' + str(a.v3) + '.' + str(a.v4)
-            model_path = model_path + '_' + version
         elif c == 'v2':
             version = str(a.v1) + '.' + str(version_id) + '.' + str(a.v3) + '.' + str(a.v4)
-            model_path = model_path + '_' + version
         elif c == 'v3':
             version = str(a.v1) + '.' + str(a.v2) + '.' + str(version_id) + '.' + str(a.v4)
-            model_path = model_path + '_' + version
         elif c == 'v4':
             version = str(a.v1) + '.' + str(a.v2) + '.' + str(a.v3) + '.' + str(version_id)
-            model_path = model_path + '_' + version
-        print('地址：', model_path)
+        model_path = model_path + '_' + version
+        print('tag目标地址：', model_path)
         print('version', version)
         print('version_id:', version_id)
         #更新版本号
@@ -47,7 +44,6 @@ def vesrion_update(pt_id, model_id, model_path, v1, v2, v3, v4, version_d, tag_m
         #插入更新版本序列表
         models.TbRecord.objects.create(bef_plat_id_id=pt_id, bef_module_id_id=model_id, bef_tag_path=model_path, \
                                        bef_version=version, cause=tag_message)
-        print('数据库插入返回结果:', result)
     # 初始化版本信息
     else:
         version = str(v1) + '.' + str(v2) + '.' + str(v3) + '.' + str(v4)
@@ -56,5 +52,4 @@ def vesrion_update(pt_id, model_id, model_path, v1, v2, v3, v4, version_d, tag_m
                                               pre_tag_path=model_path, v1=v1, v2=v2, v3=v3, v4=v4)
         models.TbRecord.objects.create(bef_plat_id_id=pt_id, bef_module_id_id=model_id, bef_tag_path=model_path, \
                                        bef_version=version, cause=tag_message)
-    print('model_path:', model_path)
-    return model_path
+    return model_path  # 返回最后的模块tag地址
