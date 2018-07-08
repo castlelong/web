@@ -94,32 +94,38 @@ class Tag(View):
         v2 = 0
         v3 = 0
         v4 = 0
-        add = "http://10.200.201.120/svn/tag"
-        model_result = models.TbModu.objects.filter(id=model_id).first()
+        add = "http://10.200.201.120/svn/cx/tags"  # SVN版本的tag分支存放路径
         # 获取模块SVN主版本路径
-        svn_add = model_result.modu_add
+        model_result = models.TbModu.objects.filter(id=model_id).first()
+        svn_add = model_result.modu_add  # 模块主干地址
         print(svn_add)
-        # svn_add = 'http://10.200.201.120/svn/autotest'
         # 获取模块名称
         model_name = model_result.modu_name
         # 获取SVN版本号
         model_version = svncontorl.version(svn_add)
-        model_path = svn_add + '/' + 'tag' + '/' + model_version + '_' + tag_date
+        # 拼接一个带模块版本号的地址，如：http://10.200.201.120/svn/cx/tags/"模块名"/"主干版本号"_更新日期
+        model_path = add + '/' + model_name + '/' + model_version + '_' + tag_date
+        # 拼接一个模块的tag分支存放路径地址，如：http://10.200.201.120/svn/cx/tags/"模块名"/
+        tag_model_path = add + '/' + model_name + '/'
+        # 根据按钮完成版本的升级
         if request.POST.get('v1'):
             version_d = 1
-            end_model_path = update.vesrion_update(pt_id, model_id, model_path, v1, v2, v3, v4, version_d, tag_message)
-            print('end_model_path:', end_model_path)
-            svncontorl.set_parm(svn_add, end_model_path, tag_message)
-            # svncontorl.chckout()
+            # 返回完整带版本信息的SVN路径
+            version_model_path = update.vesrion_update(pt_id, model_id, model_path, v1, v2, v3, v4, version_d, tag_message)
+            # print('end_model_path:', end_model_path)
+            svncontorl.set_parm(svn_add, tag_model_path, tag_message, version_model_path)
         elif request.POST.get('v2'):
             version_d = 2
-            update.vesrion_update(pt_id, model_id, model_path, v1, v2, v3, v4, version_d, tag_message)
+            version_model_path = update.vesrion_update(pt_id, model_id, model_path, v1, v2, v3, v4, version_d, tag_message)
+            svncontorl.set_parm(svn_add, tag_model_path, tag_message, version_model_path)
         elif request.POST.get('v3'):
             version_d = 3
-            update.vesrion_update(pt_id, model_id, model_path, v1, v2, v3, v4, version_d, tag_message)
+            version_model_path = update.vesrion_update(pt_id, model_id, model_path, v1, v2, v3, v4, version_d, tag_message)
+            svncontorl.set_parm(svn_add, tag_model_path, tag_message, version_model_path)
         elif request.POST.get('v4'):
             version_d = 4
-            update.vesrion_update(pt_id, model_id, model_path, v1, v2, v3, v4, version_d, tag_message)
+            version_model_path = update.vesrion_update(pt_id, model_id, model_path, v1, v2, v3, v4, version_d, tag_message)
+            svncontorl.set_parm(svn_add, tag_model_path, tag_message, version_model_path)
         elif request.POST.get('fanhui'):
             return redirect('/index/')
         return redirect('/tag/')
