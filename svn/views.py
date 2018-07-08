@@ -7,6 +7,7 @@ from svn import update
 # Create your views here.
 from django.views import View
 from svn import models
+from svn import svncontorl
 # plat_dict ={
 #     'xft':'信付通平台(线下平台)',
 #     'syxl':'商银信联平台(线上平台)'
@@ -93,16 +94,23 @@ class Tag(View):
         v2 = 0
         v3 = 0
         v4 = 0
+        add = "http://10.200.201.120/svn/tag"
         model_result = models.TbModu.objects.filter(id=model_id).first()
-        svn_add = "http://10.200.200.21:18443"
+        # 获取模块SVN主版本路径
+        svn_add = model_result.modu_add
+        print(svn_add)
+        # svn_add = 'http://10.200.201.120/svn/autotest'
+        # 获取模块名称
         model_name = model_result.modu_name
-        model_version = '8043'
-        model_path = svn_add + '/' + model_name + '/' + model_version + '_' + tag_date
-        print(model_path)
-        pass
+        # 获取SVN版本号
+        model_version = svncontorl.version(svn_add)
+        model_path = svn_add + '/' + 'tag' + '/' + model_version + '_' + tag_date
         if request.POST.get('v1'):
             version_d = 1
-            update.vesrion_update(pt_id, model_id, model_path, v1, v2, v3, v4, version_d, tag_message)
+            end_model_path = update.vesrion_update(pt_id, model_id, model_path, v1, v2, v3, v4, version_d, tag_message)
+            print('end_model_path:', end_model_path)
+            svncontorl.set_parm(svn_add, end_model_path, tag_message)
+            # svncontorl.chckout()
         elif request.POST.get('v2'):
             version_d = 2
             update.vesrion_update(pt_id, model_id, model_path, v1, v2, v3, v4, version_d, tag_message)
@@ -143,7 +151,7 @@ class Search(View):
             else:
                 result = models.TbRecord.objects.all()
                 for row in result:
-                    print(type(row.update_date),row.update_date)
+                    print(type(row.update_date), row.update_date)
             return render(request, 'svn/search.html', {'plat_list': plat_result, 'model_list': model_result, \
                                                        'model_recoder': result})
 
