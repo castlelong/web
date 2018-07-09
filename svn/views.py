@@ -180,13 +180,12 @@ class Login(View):
             passd = u.password
             if user == ' ' and pwd == ' ':
                 error_message = "未输入相关参数，请认真填写！"
-                return render(request, 'login.html', {'error_message':error_message})
+                return render(request, 'login.html', {'error_message': error_message})
             elif user == user_name and pwd == passd:
                 return redirect('/index/')
             else:
                 error_message = "用户名或密码错误"
-                return render(request, 'login.html', {'error_message':error_message})
-
+                return render(request, 'login.html', {'error_message': error_message})
 
 
 def index(request):

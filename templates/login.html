@@ -5,20 +5,69 @@
     <meta http-equiv="x-ua-compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>运维管理平台登录</title>
+    <style>
+        .col span {
+            display: inline-block;
+            width: 50px;
+        }
+        .col input {
+            display: inline-block;
+            width: 120px;
+            height: 26px;
+            line-height: 26px;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            border-radius: 4px;
+            margin-left: 6px;
+            border: 1px solid #ccc;
+            padding-left: 6px;
+        }
+        .col {
+            margin: 10px auto;
+        }
+        .btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100px;
+            height: 24px;
+            text-align: center;
+            background-color: deepskyblue;
+            color: #FFF;
+            -webkit-border-radius: 6px;
+            -moz-border-radius: 6px;
+            border-radius: 6px;
+            border: none;
+            margin: 12px auto;
+        }
+        .form {
+            width: 260px;
+            height: 260px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate3d(-50%, -50%, 0);
+            background-color: lavender;
+            -webkit-border-radius: 8px;
+            -moz-border-radius: 8px;
+            border-radius: 8px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-    <form action="/login/" method="post">
-      <p>
-        <div class="col">用户名<input type="text"  placeholder="请输入登录用户名" name="user" /></div>
-      </p>
-      <p>
-        <div class="col">密码<input type="password"  placeholder="请输入登录密码" name="password" /></div>
-      </p>
-      <p>
-        <input type="submit" name="tijiao" value="登录"/>
-      <p>
-         <span style="color:red;">{{ error_message }}</span>
-      </p>
+    <form action="/login/" method="post" class="form">
+        <div>
+            <div class="col"><span>用户名</span><input type="text"  placeholder="请输入登录用户名" name="user" c/></div>
+        <div class="col"><span>密码</span><input type="password"  placeholder="请输入登录密码" name="password" /></div>
+        <input type="submit" name="tijiao" value="登录" class="btn"/>
+          <p>
+             <span style="color:red;">{{ error_message }}</span>
+          </p>
+        </div>
     </form>
 </body>
 </html>
