@@ -162,5 +162,32 @@ class Search(View):
                                                        'model_recoder': result})
 
 
+class Login(View):
+    def dispatch(self, request, *args, **kwargs):
+        reslut = super(Login, self).dispatch(request, *args, **kwargs)
+        return reslut
+
+    def get(self, request):
+        return render(request, 'login.html')
+
+    def post(self, request):
+        if request.POST.get('tijiao'):
+            user = request.POST.get('user')
+            pwd = request.POST.get('password')
+            print(user, pwd)
+            u = models.Userinfo.objects.filter(user=user).filter(password=pwd).first()
+            user_name = u.user
+            passd = u.password
+            if user == ' ' and pwd == ' ':
+                error_message = "未输入相关参数，请认真填写！"
+                return render(request, 'login.html', {'error_message':error_message})
+            elif user == user_name and pwd == passd:
+                return redirect('/index/')
+            else:
+                error_message = "用户名或密码错误"
+                return render(request, 'login.html', {'error_message':error_message})
+
+
+
 def index(request):
     return render(request, 'index.html')

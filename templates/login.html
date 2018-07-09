@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>运维管理平台登录</title>
+</head>
+<body>
+    <form action="/login/" method="post">
+      <p>
+        <div class="col">用户名<input type="text"  placeholder="请输入登录用户名" name="user" /></div>
+      </p>
+      <p>
+        <div class="col">密码<input type="password"  placeholder="请输入登录密码" name="password" /></div>
+      </p>
+      <p>
+        <input type="submit" name="tijiao" value="登录"/>
+      <p>
+         <span style="color:red;">{{ error_message }}</span>
+      </p>
+    </form>
+</body>
+</html>

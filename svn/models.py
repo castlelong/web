@@ -57,3 +57,8 @@ class TbRecord(models.Model):
         verbose_name = '更新记录表'
         verbose_name_plural = verbose_name
 
+
+class Userinfo(models.Model):
+    user = models.CharField("用户名", max_length=20)
+    password = models.CharField("密码", max_length=40)
+
