@@ -35,7 +35,7 @@ def tag(setting):
         mk_path = 'svn mkdir -m mkdir' + ' ' + setting['tag_path'] \
                   + " " + "--username" + " " + setting['user'] + " " + "--password" + " " + setting['pwd']
         print('mk_path:', mk_path)
-        # os.popen(mk_path)
+        os.popen(mk_path)
     tag_cmd = "svn cp " + " -m " + " " + setting['message'] + " " + setting['url'] + " " + setting['version_model_path'] + " "\
               "--username" + " " + setting['user'] + " " + "--password" + " " + setting['pwd']
     os.popen(tag_cmd)
