@@ -49,7 +49,7 @@ def vesrion_update(pt_id, model_id, model_path, v1, v2, v3, v4, version_d, tag_m
     # 初始化版本信息
     else:
         version = str(v1) + '.' + str(v2) + '.' + str(v3) + '.' + str(v4)
-        model_path = model_path + '_' + version + + '_' + pt_name
+        model_path = model_path + '_' + version + '_' + pt_name
         models.TbModuleVersion.objects.create(pre_plat_id_id=pt_id, pre_module_id_id=model_id, \
                                               pre_tag_path=model_path, v1=v1, v2=v2, v3=v3, v4=v4)
         models.TbRecord.objects.create(bef_plat_id_id=pt_id, bef_module_id_id=model_id, bef_tag_path=model_path, \
