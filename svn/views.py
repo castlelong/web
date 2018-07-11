@@ -94,7 +94,7 @@ class Tag(View):
         v2 = 0
         v3 = 0
         v4 = 0
-        add = "http://10.200.201.120/svn/cx/tags"  # SVN版本的tag分支存放路径
+        add = "http://10.200.201.120/svn/luban/tags"  # SVN版本的tag分支存放路径
         # 获取模块SVN主版本路径
         model_result = models.TbModu.objects.filter(id=model_id).first()
         svn_add = model_result.modu_add  # 模块主干地址
