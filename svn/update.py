@@ -9,6 +9,8 @@ import time
 def vesrion_update(pt_id, model_id, model_path, v1, v2, v3, v4, version_d, tag_message):
     version_reslut = models.TbModuleVersion.objects.filter(pre_plat_id_id=pt_id).filter(pre_module_id=model_id).first()
     update_time = time.strftime('%YY%m%d ')
+    pt_result = models.TbPlat.objects.filter(id=pt_id).first()
+    pt_name = pt_result.plat_jc
     print(version_reslut)
     # 判断该模块有未初始化版本信
     if version_reslut:
@@ -30,7 +32,7 @@ def vesrion_update(pt_id, model_id, model_path, v1, v2, v3, v4, version_d, tag_m
             version = str(a.v1) + '.' + str(a.v2) + '.' + str(version_id) + '.' + str(a.v4)
         elif c == 'v4':
             version = str(a.v1) + '.' + str(a.v2) + '.' + str(a.v3) + '.' + str(version_id)
-        model_path = model_path + '_' + version
+        model_path = model_path + '_' + version + '_' + pt_name
         print('tag目标地址：', model_path)
         print('version', version)
         print('version_id:', version_id)
@@ -47,7 +49,7 @@ def vesrion_update(pt_id, model_id, model_path, v1, v2, v3, v4, version_d, tag_m
     # 初始化版本信息
     else:
         version = str(v1) + '.' + str(v2) + '.' + str(v3) + '.' + str(v4)
-        model_path = model_path + '_' + version
+        model_path = model_path + '_' + version + + '_' + pt_name
         models.TbModuleVersion.objects.create(pre_plat_id_id=pt_id, pre_module_id_id=model_id, \
                                               pre_tag_path=model_path, v1=v1, v2=v2, v3=v3, v4=v4)
         models.TbRecord.objects.create(bef_plat_id_id=pt_id, bef_module_id_id=model_id, bef_tag_path=model_path, \

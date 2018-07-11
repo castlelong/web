@@ -18,7 +18,7 @@ def set_parm(svn_add, tag_model_path, tag_message, version_model_path):
         'pwd': 'svnadmin',  # 密码
         'tag_path': tag_model_path,  # 模块tag地址
         'message': tag_message,  # 提交信息
-        'version_model_path': version_model_path  # 最终带版本的SVN分支路径
+        'version_model_path': version_model_path# 最终带版本的SVN分支路径
 
         # 'interval':15 #更新时间
     }
@@ -38,7 +38,7 @@ def tag(setting):
         # os.popen(mk_path)
     tag_cmd = "svn cp " + " -m " + " " + setting['message'] + " " + setting['url'] + " " + setting['version_model_path'] + " "\
               "--username" + " " + setting['user'] + " " + "--password" + " " + setting['pwd']
-    # os.popen(tag_cmd)
+    os.popen(tag_cmd)
     print(sys.getdefaultencoding())
     print('tag_cmd:', tag_cmd)
 
