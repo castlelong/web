@@ -83,18 +83,24 @@ class Tag(View):
     def get(self, request):
         model_result = models.TbModu.objects.all()
         pt_result = models.TbPlat.objects.all()
-        return render(request, 'svn/tag.html', {'model_list': model_result, 'pt_list': pt_result})
+        tag_result = models.Huanjin.objects.all()
+        return render(request, 'svn/tag.html', {'model_list': model_result, 'pt_list': pt_result, 'tag_list': tag_result})
 
     def post(self, request):
         pt_id = request.POST.get('ptmc')
         model_id = request.POST.get('mkmc')
+        tag_id = request.POST.get('mkhj')
+        tag_result = models.Huanjin.objects.filter(id=tag_id).first()
+        tag_name = tag_result.h_name
+        tag_bj = tag_result.tag_bj
         tag_message = request.POST.get('message')
         tag_date = time.strftime('%Y%m%d', time.localtime())
         v1 = 1
         v2 = 0
         v3 = 0
         v4 = 0
-        add = "http://10.200.201.120/svn/luban/tags"  # SVN版本的tag分支存放路径
+        # add = "http://10.200.201.120/svn/luban/tags"  # SVN版本的tag分支存放路径
+        add = "http://10.200.201.120/svn/cx/%s" % tag_bj
         print('add:', add)
         pass
         # 获取模块SVN主版本路径

@@ -44,6 +44,13 @@
             {% endfor %}
         </select>
       </div>
+            <div class="col" id="mkhj">环境:
+        <select name="mkhj" id="mkhj-select">
+            {% for tag_name in tag_list %}
+                <option value="{{tag_name.id}}">{{tag_name.h_name}}</option>
+            {% endfor %}
+        </select>
+      </div>
       <p>tag信息</p>
       <textarea rows="10" cols="100" placeholder="请输入" id="tag-message" name="message"></textarea>
     <div>

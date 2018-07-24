@@ -62,3 +62,9 @@ class Userinfo(models.Model):
     user = models.CharField("用户名", max_length=20)
     password = models.CharField("密码", max_length=40)
 
+
+class Huanjin(models.Model):
+    h_jc = models.CharField("环境简称", max_length=20)
+    h_name = models.CharField("环境名称", max_length=40)
+    tag_bj = models.CharField("tag标记", max_length=40)
+

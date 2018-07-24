@@ -25,7 +25,7 @@ SECRET_KEY = 'u-cu328=8^q*bcadjp(g1vm9og$o=gjz7l@h)lhf%5097wj8d2'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*',]
 
 
 # Application definition

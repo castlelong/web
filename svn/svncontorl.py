@@ -7,6 +7,7 @@ from svn import models
 import os
 # import time
 import sys
+import chardet
 
 
 def set_parm(svn_add, tag_model_path, tag_message, version_model_path):
@@ -31,15 +32,23 @@ def tag(setting):
     dir_info = "svn info " + setting['tag_path'] + " " + "--username svnadmin --password svnadmin"
     dir_result = os.system(dir_info)  # 得到命令运行结果值，0为成功，1为失败
     print('dir_result:', dir_result)
+    print('message:', chardet.detect(setting['message'].encode(encoding='utf-8')))
+    # message = setting['message']
+    # pass
     if dir_result != 0:
-        mk_path = 'svn mkdir -m mkdir' + ' ' + setting['tag_path'] \
-                  + " " + "--username" + " " + setting['user'] + " " + "--password" + " " + setting['pwd']
+        mk_path = 'svn mkdir -m' + ' ' + 'mkdir' + ' ' + setting['tag_path'] \
+                  + ' ' + '--username' + ' ' + setting['user'] + ' ' + "--password" + ' ' + setting['pwd']
         print('mk_path:', mk_path)
         os.popen(mk_path)
-    tag_cmd = "svn cp " + " -m " + " " + setting['message'] + " " + setting['url'] + " " + setting['version_model_path'] + " "\
-              "--username" + " " + setting['user'] + " " + "--password" + " " + setting['pwd']
+    tag_cmd = 'svn cp' + ' ' + '-m' + ' ' + 'tag' + ' ' + setting['url'] + \
+              ' ' + setting['version_model_path'] + ' ' + '--username' + ' ' + \
+              setting['user'] + ' ' + '--password' + ' ' + setting['pwd']
+    # tag_cmd = ('svn cp -m' + ' ' + '%s' + ' ' + setting['url'] + \
+    #           ' ' + setting['version_model_path'] + ' ' + '--username' + ' ' + \
+    #           setting['user'] + ' ' + '--password' + ' ' + setting['pwd']) % setting['message']
+    print(tag_cmd, type(tag_cmd))
     os.popen(tag_cmd)
-    print(sys.getdefaultencoding())
+    # print(sys.getdefaultencoding())
     print('tag_cmd:', tag_cmd)
 
 
