@@ -114,6 +114,7 @@ class Tag(View):
         model_version = svncontorl.version(svn_add)
         # 拼接一个带模块版本号的地址，如：http://10.200.201.120/svn/cx/tags/"模块名"/"主干版本号"_更新日期
         model_path = add + '/' + model_name + '/' + model_version + '_' + tag_date
+        print(model_path)
         # 拼接一个模块的tag分支存放路径地址，如：http://10.200.201.120/svn/cx/tags/"模块名"/
         tag_model_path = add + '/' + model_name + '/'
         # 根据按钮完成版本的升级
@@ -165,8 +166,8 @@ class Search(View):
                     result = models.TbRecord.objects.filter(bef_module_id_id=mk_id)
             else:
                 result = models.TbRecord.objects.all()
-                for row in result:
-                    print(type(row.update_date), row.update_date)
+                # for row in result:
+                #     print(type(row.update_date), row.update_date)
             return render(request, 'svn/search.html', {'plat_list': plat_result, 'model_list': model_result, \
                                                        'model_recoder': result})
 

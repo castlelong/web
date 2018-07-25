@@ -66,5 +66,5 @@ def version(svn_add):
     version_list = svn_info_list[5]
     # print(svn_info_list, version_list)
     reversion = version_list[10:]
-    # print(reversion)
+    print(reversion)
     return reversion
