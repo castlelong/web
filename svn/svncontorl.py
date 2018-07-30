@@ -41,7 +41,7 @@ def tag(setting):
         print('mk_path:', mk_path)
         os.popen(mk_path)
         time.sleep(5)
-    tag_cmd = 'svn cp' + ' ' + '-m' + ' ' + 'tag branch' + ' ' + setting['url'] + \
+    tag_cmd = 'svn cp' + ' ' + '-m' + ' ' + 'tag' + ' ' + setting['url'] + \
               ' ' + setting['version_model_path'] + ' ' + '--username' + ' ' + \
               setting['user'] + ' ' + '--password' + ' ' + setting['pwd']
     # tag_cmd = ('svn cp -m' + ' ' + '%s' + ' ' + setting['url'] + \
@@ -66,6 +66,7 @@ def version(svn_add):
     svn_info_list = svn_info.strip(',').split('\n')
     version_list = svn_info_list[5]
     print(svn_info_list, version_list)
-    reversion = version_list[10:]
-    print(reversion)
+    reversion = version_list.split(':')[1].strip()
+    print('版本号：',reversion)
+    pass
     return reversion
