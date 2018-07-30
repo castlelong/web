@@ -5,7 +5,7 @@
 # coding=utf-8
 from svn import models
 import os
-# import time
+import time
 import sys
 import chardet
 
@@ -32,7 +32,7 @@ def tag(setting):
     dir_info = "svn info " + setting['tag_path'] + " " + "--username svnadmin --password svnadmin"
     dir_result = os.system(dir_info)  # 得到命令运行结果值，0为成功，1为失败
     print('dir_result:', dir_result)
-    print('message:', chardet.detect(setting['message'].encode(encoding='utf-8')))
+    #print('message:', chardet.detect(setting['message'].encode(encoding='utf-8')))
     # message = setting['message']
     # pass
     if dir_result != 0:
@@ -40,7 +40,8 @@ def tag(setting):
                   + ' ' + '--username' + ' ' + setting['user'] + ' ' + "--password" + ' ' + setting['pwd']
         print('mk_path:', mk_path)
         os.popen(mk_path)
-    tag_cmd = 'svn cp' + ' ' + '-m' + ' ' + 'tag' + ' ' + setting['url'] + \
+        time.sleep(5)
+    tag_cmd = 'svn cp' + ' ' + '-m' + ' ' + 'tag branch' + ' ' + setting['url'] + \
               ' ' + setting['version_model_path'] + ' ' + '--username' + ' ' + \
               setting['user'] + ' ' + '--password' + ' ' + setting['pwd']
     # tag_cmd = ('svn cp -m' + ' ' + '%s' + ' ' + setting['url'] + \
@@ -64,7 +65,7 @@ def version(svn_add):
     # print(svn_info)
     svn_info_list = svn_info.strip(',').split('\n')
     version_list = svn_info_list[5]
-    # print(svn_info_list, version_list)
+    print(svn_info_list, version_list)
     reversion = version_list[10:]
     print(reversion)
     return reversion
